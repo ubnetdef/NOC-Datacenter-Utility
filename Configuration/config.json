@@ -1,0 +1,73 @@
+{
+  "ssh_user": "root",
+  "webhook_url": "https://chat.ubnetdef.org/hooks/pgax4zdh4386mnojryyrysz9bh",
+  "interfaces": ["vmbr0","corered","coreblue","io"],
+  "ping_targets": ["128.205.1.100","8.8.8.8", "google.com"],
+  "alert_state_file": "alert_states.json",
+
+  "resource_warn_threshold": 85,
+  "resource_crit_threshold": 95,
+
+  "cooldowns": {
+    "resource_critical": 600,
+    "resource_warning": 1200,
+    "resource_resolved": 300,
+
+    "cpu_critical": 600,
+    "cpu_warning": 1200,
+    "cpu_resolved": 300,
+
+    "ram_critical": 600,
+    "ram_warning": 1200,
+    "ram_resolved": 300,
+
+    "disk_critical": 600,
+    "disk_warning": 1200,
+    "disk_resolved": 300,
+
+    "network_down": 600,
+    "network_up": 300,
+
+    "website_down": 600,
+    "website_up": 300
+
+  },
+
+  "checks_enabled": {
+    "website": true,
+    "ssh": true,
+    "network": true,
+    "interfaces": true,
+    "resource_usage": true
+  },
+
+  "hosts": [
+    {
+      "name": "cdr-vhost2",
+      "ssh": "128.205.44.153",
+      "website": "https://128.205.44.153:8006"
+    },
+    {
+      "name": "cdr-vhost4",
+      "ssh": "128.205.44.160",
+      "website": "https://128.205.44.160:8006"
+    },
+    {
+      "name": "cdr-vhost5",
+      "ssh": "128.205.44.161",
+      "website": "https://128.205.44.161:8006"
+    },
+    {
+      "name": "cdr-vhost6",
+      "ssh": "128.205.44.168",
+      "website": "https://128.205.44.168:8006"
+    },
+    {
+      "name": "cdr-vhost42",
+      "ssh": "128.205.44.167",
+      "website": "https://128.205.44.167:8006"
+    }
+  ],
+
+  "round_robin_host": "cdr-vm.cse.buffalo.edu"
+}
