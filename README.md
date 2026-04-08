@@ -1,16 +1,20 @@
-Proxmox Monitoring System
+Network Operation Center
 =========
-This repository is confgiured for the UBNETDEF Hypervisor only!!
+This repository is configured for the following systems
+- Production Servers
+- Development Servers
+- Instructor Servers
+- Datastores
+- Misc Utilities
 
 Table of contents
 =========
-- Configuration folder (TBD)
-- Scripts (TBD)
+TBD
 
 Built-in Alarms
 =========
-- CPU Thersholds
-- RAM Thersholds
-- Disk Thersholds
+- CPU Thersholds (W.I.P.)
+- RAM Thersholds (W.I.P.)
+- Disk Thersholds (W.I.P.)
 - Network status (W.I.P.)
-- Power status (Coming soon)
+- Power status (W.I.P.)
