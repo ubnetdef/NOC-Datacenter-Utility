@@ -1,0 +1,59 @@
+services:
+  status:
+    image: noc-datacenter-utility-status:latest
+    command: ["--surface", "status", "--host", "127.0.0.1", "--port", "8080", "--config", "/config/dashboard.json"]
+    network_mode: host
+    volumes:
+      - type: bind
+        source: ../Configuration/status.json
+        target: /config/dashboard.json
+        read_only: true
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.noc_dashboard == true
+      restart_policy:
+        condition: any
+
+  management:
+    image: noc-datacenter-utility-management:latest
+    command: ["--surface", "management", "--host", "127.0.0.1", "--port", "8081", "--config", "/config/dashboard.json", "--state", "/data/racks.sqlite3"]
+    network_mode: host
+    volumes:
+      - type: bind
+        source: ../Configuration/management.json
+        target: /config/dashboard.json
+        read_only: true
+      - rack_data:/data
+    secrets:
+      - source: noc_device_credentials
+        target: noc_device_credentials
+        uid: "65532"
+        gid: "65532"
+        mode: 0400
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.noc_dashboard == true
+      restart_policy:
+        condition: any
+
+volumes:
+  rack_data:
+
+secrets:
+  noc_device_credentials:
+    external: true
+    name: ${NOC_CREDENTIAL_SECRET:-noc-device-credentials}

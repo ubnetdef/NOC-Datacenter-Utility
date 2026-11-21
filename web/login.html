@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#25292e">
+  <title>Management sign in | UBNetDef</title>
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/login.js"></script>
+</head>
+<body class="login-page">
+  <header class="topbar">
+    <div class="shell nav">
+      <a class="brand" href="/login"><span class="brand-icon">U</span><span>UBNETDEF <small>INFRASTRUCTURE</small></span></a>
+      <span class="nav-label">PRIVATE MANAGEMENT</span>
+    </div>
+  </header>
+  <main class="login-shell">
+    <section class="login-panel" aria-labelledby="login-title">
+      <div class="eyebrow"><span class="square"></span> RESTRICTED ACCESS</div>
+      <h1 id="login-title">Management<span class="accent">.</span></h1>
+      <p class="login-intro">Sign in with an authorized Linux account to continue.</p>
+      <div class="network-lock"><span aria-hidden="true">●</span> PRIVATE NETWORK ONLY</div>
+      <p id="login-message" class="login-message" role="status" aria-live="polite" hidden></p>
+      <form class="login-form" action="/dologin" method="post" accept-charset="UTF-8">
+        <label for="httpd_username">Username</label>
+        <input id="httpd_username" name="httpd_username" type="text" autocomplete="username"
+               autocapitalize="none" spellcheck="false" required>
+        <label for="httpd_password">Password</label>
+        <input id="httpd_password" name="httpd_password" type="password"
+               autocomplete="current-password" required>
+        <button type="submit" name="login" value="Sign in">Sign in</button>
+      </form>
+      <p class="login-note">Access is limited to the approved management network and members of the administrator group.</p>
+    </section>
+  </main>
+  <footer class="shell footer"><span>© UBNETDEF <span class="divider">/</span> INFRASTRUCTURE</span><span>AUTHORIZED USERS ONLY</span></footer>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Debian/Ubuntu example. Create the noc-admin group and add only authorized users.
+# Test the PAM configuration and account access on the actual host before use.
+auth       include      common-auth
+account    required     pam_succeed_if.so user ingroup noc-admin
+account    include      common-account

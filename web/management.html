@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Infrastructure overview | UBNetDef</title>
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/live.js"></script>
+  <script defer src="/app.js"></script>
+  <script defer src="/alerts.js"></script>
+</head>
+<body class="management">
+  <header class="topbar"><div class="shell nav">
+    <a class="brand" href="/"><span class="brand-icon">U</span><span>UBNETDEF <small>INFRASTRUCTURE</small></span></a>
+    <div class="management-nav-right"><span class="nav-label"><span class="live-dot"></span> MANAGEMENT CONSOLE</span><a class="logout-link" href="/logout">SIGN OUT</a></div>
+  </div></header>
+  <main class="shell">
+    <div class="eyebrow"><span class="square"></span> MANAGEMENT <span class="divider">/</span> OVERVIEW</div>
+    <section class="page-heading"><div><h1>Infrastructure<span class="accent">.</span></h1><p>Your environment, at a glance.</p></div><div class="refresh-label">LIVE · UI UPDATES EVERY 5 SEC</div></section>
+    <section class="notice"><span class="notice-icon">i</span><div><strong>Automatic device monitoring</strong><p>Devices begin a continuous 30-second heartbeat after successful read-only discovery. Available Redfish, IPMI, or SNMP telemetry drives rack status and active alarms; unsupported component data remains unknown.</p></div></section>
+    <section class="stats" aria-label="Overview">
+      <div class="stat"><span>INVENTORY DEVICES</span><strong id="device-count">—</strong><small>Across all racks</small></div>
+      <div class="stat"><span>RACKS</span><strong id="rack-count">—</strong><small>Configured cabinets</small></div>
+      <div class="stat"><span>WEBSITE CHECKS</span><strong id="website-count">—</strong><small>Public-facing services</small></div>
+      <div class="stat"><span>WEBSITE OUTAGES</span><strong id="outage-count">—</strong><small>Current check failures</small></div>
+    </section>
+    <section class="designer-launch">
+      <div class="designer-copy"><div class="eyebrow">HARDWARE LAYOUT</div><h2>Rack designer<span class="accent">.</span></h2><p>Inspect detailed front and rear equipment views, choose models from the bundled library, and manage rack placement.</p></div>
+      <a class="designer-button" href="/rack"><span>OPEN FULL-SCREEN RACK DESIGNER</span><strong>→</strong></a>
+    </section>
+    <div class="section-head"><div><div class="eyebrow">YOUR ENVIRONMENT</div><h2>Rack inventory</h2><p id="rack-summary-caption">Loading inventory…</p></div></div>
+    <section class="panel"><div id="rack-summary" class="rows"><div class="empty">Loading rack inventory…</div></div></section>
+    <div class="section-head"><div><div class="eyebrow">MONITORING</div><h2>Active alarms</h2><p>Automatically tracked website, network, hardware, and resource alarms.</p></div><span class="count">LIVE STATE</span></div>
+    <section class="panel" aria-label="Active alerts"><div id="alerts" class="rows"><div class="empty">Loading alerts…</div></div></section>
+    <section class="panel resolved-panel" aria-label="Recently resolved alarms">
+      <div class="section-head"><div><div class="eyebrow">RECENTLY RESOLVED</div><h2>Recovered alarms</h2><p>Resolved alarms remain here for 60 seconds before moving to history.</p></div></div>
+      <div id="resolved-alerts" class="rows"><div class="empty">No recently resolved alarms.</div></div>
+    </section>
+    <section id="alarm-history" class="alarm-history">
+      <div class="section-head"><div><div class="eyebrow">AUDIT LOG</div><h2>Alarm history</h2><p>Resolved alarms, newest first. Date filters use the UTC resolution date.</p></div></div>
+      <form id="alarm-history-filters" class="alarm-history-filters">
+        <label>Resolved from<input type="date" name="from"></label>
+        <label>Resolved through<input type="date" name="to"></label>
+        <label>Alarm type<select name="type">
+          <option value="">All types</option>
+          <option value="network">Network</option>
+          <option value="hardware">Hardware</option>
+          <option value="resource">Resource-Usage</option>
+          <option value="service">Service</option>
+        </select></label>
+        <button type="submit">Filter history</button>
+      </form>
+      <p id="alarm-history-error" class="error" role="alert"></p>
+      <section class="panel"><div id="alarm-history-list" class="rows"><div class="empty">Loading alarm history…</div></div></section>
+      <button id="alarm-history-more" class="secondary" type="button" hidden>Load older alarms</button>
+    </section>
+    <p class="footnote">Management is intended to be protected by the external proxy and restricted to your private network.</p>
+  </main>
+  <footer class="shell footer"><span>© UBNETDEF <span class="divider">/</span> INFRASTRUCTURE</span><span>PRIVATE MANAGEMENT CONSOLE</span></footer>
+</body>
+</html>

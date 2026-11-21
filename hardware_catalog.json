@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "models": [
+    {
+      "id": "dell-r720",
+      "manufacturer": "Dell",
+      "name": "PowerEdge R720",
+      "height": 2,
+      "family": "dell-12g",
+      "source": "https://www.dell.com/support/product-details/en-us/product/poweredge-r720/docs",
+      "variants": [
+        {"id": "8lff", "label": "8 × 3.5 in front bays", "front_bays": 8, "bay_size": "3.5 in", "drive_orientation": "vertical", "drive_rows": 1, "drive_slot_width": 72, "rear_bays": 0},
+        {"id": "16sff", "label": "16 × 2.5 in front bays", "front_bays": 16, "bay_size": "2.5 in", "drive_orientation": "vertical", "drive_rows": 1, "rear_bays": 0}
+      ],
+      "rear": {"psus": 2, "psu_side": "right", "fans": 4, "nic_ports": 4, "idrac": true, "serial": true, "vga": true, "usb": 2, "pcie": 3}
+    },
+    {
+      "id": "dell-r730",
+      "manufacturer": "Dell",
+      "name": "PowerEdge R730",
+      "height": 2,
+      "family": "dell-13g",
+      "source": "https://www.dell.com/support/product-details/en-us/product/poweredge-r730/docs",
+      "variants": [
+        {"id": "8lff", "label": "8 × 3.5 in front bays", "front_bays": 8, "bay_size": "3.5 in", "drive_orientation": "vertical", "drive_rows": 1, "drive_slot_width": 72, "rear_bays": 0},
+        {"id": "16sff", "label": "16 × 2.5 in front bays", "front_bays": 16, "bay_size": "2.5 in", "drive_orientation": "vertical", "drive_rows": 1, "rear_bays": 0}
+      ],
+      "rear": {"psus": 2, "psu_side": "right", "fans": 4, "nic_ports": 4, "idrac": true, "serial": true, "vga": true, "usb": 2, "pcie": 3}
+    },
+    {
+      "id": "dellemc-r730",
+      "manufacturer": "Dell EMC",
+      "name": "PowerEdge R730",
+      "height": 2,
+      "family": "dell-13g",
+      "source": "https://www.dell.com/support/product-details/en-us/product/poweredge-r730/docs",
+      "variants": [
+        {"id": "8lff", "label": "8 × 3.5 in front bays", "front_bays": 8, "bay_size": "3.5 in", "drive_orientation": "vertical", "drive_rows": 1, "drive_slot_width": 72, "rear_bays": 0},
+        {"id": "16sff", "label": "16 × 2.5 in front bays", "front_bays": 16, "bay_size": "2.5 in", "drive_orientation": "vertical", "drive_rows": 1, "rear_bays": 0}
+      ],
+      "rear": {"psus": 2, "psu_side": "right", "fans": 4, "nic_ports": 4, "idrac": true, "serial": true, "vga": true, "usb": 2, "pcie": 3}
+    },
+    {
+      "id": "dell-r610",
+      "manufacturer": "Dell",
+      "name": "PowerEdge R610",
+      "height": 1,
+      "family": "dell-11g",
+      "source": "https://www.dell.com/support/product-details/en-us/product/poweredge-r610/docs",
+      "variants": [
+        {"id": "6sff", "label": "6 × 2.5 in front bays", "front_bays": 6, "bay_size": "2.5 in", "drive_orientation": "vertical", "drive_rows": 1, "rear_bays": 0},
+        {"id": "4lff", "label": "4 × 3.5 in front bays", "front_bays": 4, "bay_size": "3.5 in", "drive_orientation": "horizontal", "drive_rows": 1, "rear_bays": 0}
+      ],
+      "rear": {"psus": 2, "psu_side": "right", "fans": 0, "nic_ports": 4, "idrac": true, "serial": true, "vga": true, "usb": 2, "pcie": 2}
+    },
+    {
+      "id": "dell-r630",
+      "manufacturer": "Dell",
+      "name": "PowerEdge R630",
+      "height": 1,
+      "family": "dell-13g",
+      "source": "https://www.dell.com/support/product-details/en-us/product/poweredge-r630/docs",
+      "variants": [
+        {"id": "10sff", "label": "10 × 2.5 in front bays", "front_bays": 10, "bay_size": "2.5 in", "drive_orientation": "vertical", "drive_rows": 1, "rear_bays": 0},
+        {"id": "4lff", "label": "4 × 3.5 in front bays", "front_bays": 4, "bay_size": "3.5 in", "drive_orientation": "horizontal", "drive_rows": 1, "rear_bays": 0}
+      ],
+      "rear": {"psus": 2, "psu_side": "right", "fans": 2, "nic_ports": 4, "idrac": true, "serial": true, "vga": true, "usb": 2, "pcie": 2}
+    },
+    {
+      "id": "dell-r430",
+      "manufacturer": "Dell",
+      "name": "PowerEdge R430",
+      "height": 1,
+      "family": "dell-13g",
+      "source": "https://www.dell.com/support/product-details/en-us/product/poweredge-r430/docs",
+      "variants": [
+        {"id": "4lff", "label": "4 × 3.5 in front bays", "front_bays": 4, "bay_size": "3.5 in", "drive_orientation": "horizontal", "drive_rows": 1, "rear_bays": 0},
+        {"id": "8sff", "label": "8 × 2.5 in front bays", "front_bays": 8, "bay_size": "2.5 in", "drive_orientation": "vertical", "drive_rows": 1, "rear_bays": 0}
+      ],
+      "rear": {"psus": 2, "psu_side": "right", "fans": 2, "nic_ports": 4, "idrac": true, "serial": true, "vga": true, "usb": 2, "pcie": 2}
+    },
+    {
+      "id": "dell-r720xd",
+      "manufacturer": "Dell",
+      "name": "PowerEdge R720xd",
+      "height": 2,
+      "family": "dell-12g",
+      "source": "https://www.dell.com/support/product-details/en-us/product/poweredge-r720xd/docs",
+      "variants": [
+        {"id": "12lff", "label": "12 × 3.5 in front + 2 × 2.5 in rear", "front_bays": 12, "bay_size": "3.5 in", "drive_orientation": "horizontal", "drive_rows": 2, "rear_bays": 2},
+        {"id": "24sff", "label": "24 × 2.5 in front + 2 × 2.5 in rear", "front_bays": 24, "bay_size": "2.5 in", "drive_orientation": "vertical", "drive_rows": 2, "rear_bays": 2}
+      ],
+      "rear": {"psus": 2, "psu_side": "right", "fans": 4, "nic_ports": 4, "idrac": true, "serial": true, "vga": true, "usb": 2, "pcie": 3}
+    },
+    {
+      "id": "dell-s4048t-on",
+      "manufacturer": "Dell EMC",
+      "name": "Networking S4048T-ON",
+      "height": 1,
+      "family": "dell-switch",
+      "source": "https://www.dell.com/support/product-details/en-us/product/networking-s4048t-on/docs",
+      "variants": [
+        {"id": "48t6q", "label": "48 × 10GBASE-T + 6 × QSFP+", "front_bays": 0, "bay_size": "", "rear_bays": 0}
+      ],
+      "rear": {"psus": 2, "psu_side": "right", "fans": 3, "nic_ports": 0, "management_port": true, "idrac": false, "serial": true, "vga": false, "usb": 1, "pcie": 0}
+    },
+    {
+      "id": "hpe-dl360-gen9",
+      "manufacturer": "HPE",
+      "name": "ProLiant DL360 Gen9",
+      "height": 1,
+      "family": "hpe-gen9",
+      "source": "https://support.hpe.com/",
+      "front": {"control_side": "right", "control_width": 170},
+      "variants": [
+        {"id": "4lff", "label": "4 × LFF front bays", "front_bays": 4, "bay_size": "3.5 in", "drive_orientation": "horizontal", "drive_rows": 1, "rear_bays": 0},
+        {"id": "8sff", "label": "8 × SFF front bays", "front_bays": 8, "bay_size": "2.5 in", "drive_orientation": "vertical", "drive_rows": 1, "rear_bays": 0},
+        {"id": "10sff", "label": "10 × SFF front bays", "front_bays": 10, "bay_size": "2.5 in", "drive_orientation": "vertical", "drive_rows": 1, "rear_bays": 0}
+      ],
+      "rear": {"psus": 2, "psu_side": "right", "fans": 2, "nic_ports": 4, "idrac": false, "ilo": true, "serial": true, "vga": true, "usb": 2, "pcie": 2}
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#25292e">
+  <title>Rack designer | UBNetDef</title>
+  <link rel="stylesheet" href="/style.css">
+  <script defer src="/live.js"></script>
+  <script defer src="/rack.js"></script>
+  <script defer src="/alerts.js"></script>
+</head>
+<body class="rack-page">
+  <header class="topbar"><div class="rack-nav">
+    <a class="brand" href="/"><span class="brand-icon">U</span><span>UBNETDEF <small>INFRASTRUCTURE</small></span></a>
+    <div class="rack-nav-right"><span class="nav-label"><span class="live-dot"></span> RACK DESIGNER</span><a class="back-link" href="/">MANAGEMENT OVERVIEW ↗</a><a class="logout-link" href="/logout">SIGN OUT</a></div>
+  </div></header>
+  <main class="rack-main">
+    <section class="rack-toolbar">
+      <div class="rack-title"><div class="eyebrow">PHYSICAL INVENTORY <span class="divider">/</span> HARDWARE CATALOG</div><h1>Rack designer<span class="accent">.</span></h1></div>
+      <div class="rack-controls">
+        <label class="rack-picker-label" for="rack-picker">SELECT RACK</label>
+        <select id="rack-picker" aria-label="Select rack"></select>
+        <button id="add-rack" type="button">+ Add rack</button>
+        <button id="edit-rack" class="secondary" type="button">Edit rack</button>
+        <button id="remove-rack" class="secondary" type="button">Remove rack</button>
+        <button id="add-device" type="button">+ Add hardware</button>
+        <button id="add-cable" class="secondary" type="button">Connections</button>
+      </div>
+    </section>
+    <section class="rack-statusbar">
+      <div><span class="live-dot"></span> Bundled model library · choose a supported chassis and drive-bay configuration</div>
+      <div class="activity-warning">UI UPDATES EVERY 5 SEC · DEVICE HEALTH POLLS EVERY 30 SEC</div>
+    </section>
+    <div id="rack-feedback" class="rack-feedback" role="status" aria-live="polite"></div>
+    <section id="rack-workspace" class="rack-workspace" aria-label="Front and rear rack elevations">
+      <div class="rack-face-panel">
+        <div class="face-panel-heading"><span><span class="face-orientation front-mark"></span> FRONT ELEVATION</span><span>DOOR SIDE</span></div>
+        <div id="front-view" class="face-canvas"><div class="empty">Loading rack…</div></div>
+      </div>
+      <div class="rack-face-panel">
+        <div class="face-panel-heading"><span><span class="face-orientation rear-mark"></span> REAR ELEVATION</span><span>CABLE / SERVICE SIDE</span></div>
+        <div id="rear-view" class="face-canvas"><div class="empty">Loading rack…</div></div>
+      </div>
+    </section>
+    <section class="rack-lower">
+      <details class="rack-details">
+        <summary>Unassigned hardware <span id="unassigned-count" class="count">0</span></summary>
+        <div id="unassigned" class="rack-list"></div>
+      </details>
+      <details class="rack-details">
+        <summary>Documented cable connections <span id="cable-count" class="count">0</span></summary>
+        <div id="cables" class="rack-list"></div>
+      </details>
+      <div class="catalog-note">Model drawings are original schematic renderings based on listed chassis configurations. Optional risers, bezels, drive backplanes and port layouts can differ by service tag; verify against the exact unit before relying on the diagram.</div>
+    </section>
+  </main>
+  <dialog id="rack-editor"><form id="rack-form"><div class="dialog-heading"><div><div class="eyebrow">RACK CONFIGURATION</div><h2 id="rack-editor-title"></h2></div><button class="icon-button" type="button" data-close>×</button></div><div id="rack-fields" class="form-fields"></div><p class="error" id="rack-error" role="alert"></p><div class="dialog-actions"><button class="secondary" type="button" data-close>Cancel</button><button type="submit">Save rack</button></div></form></dialog>
+  <dialog id="device-editor"><form id="device-form"><div class="dialog-heading"><div><div class="eyebrow">HARDWARE CATALOG</div><h2 id="device-editor-title"></h2></div><button class="icon-button" type="button" data-close>×</button></div><div id="device-fields" class="form-fields"></div><p id="model-detail" class="model-detail"></p><section class="discovery-panel"><div class="eyebrow">DISCOVERY & AUTOMATIC HEALTH MONITORING</div><pre id="discovery-result" aria-live="polite"></pre><div id="discovery-coverage" class="discovery-coverage" hidden></div><div class="actions"><button id="discover-device" class="secondary" type="button" hidden>Start discovery and monitoring</button><button id="apply-discovered-model" class="secondary" type="button" hidden>Apply detected model and details</button></div></section><p class="error" id="device-error" role="alert"></p><div class="dialog-actions"><button class="secondary" type="button" data-close>Cancel</button><button type="submit">Save hardware</button></div></form></dialog>
+  <dialog id="port-editor"><form id="port-form"><div class="dialog-heading"><div><div class="eyebrow">PORT CONFIGURATION</div><h2 id="port-editor-title"></h2></div><button class="icon-button" type="button" data-close>×</button></div><div id="port-fields" class="form-fields"></div><p class="model-detail">Port details are inventory metadata. Link state is read automatically from the enrolled device where supported.</p><p class="error" id="port-error" role="alert"></p><div class="dialog-actions"><button class="secondary" type="button" data-close>Cancel</button><button type="submit">Save port</button></div></form></dialog>
+  <dialog id="cable-editor"><form id="cable-form"><div class="dialog-heading"><div><div class="eyebrow">CONNECTION MAP</div><h2 id="cable-editor-title"></h2></div><button class="icon-button" type="button" data-close>×</button></div><div id="cable-fields" class="form-fields"></div><p class="model-detail">Cable records identify uplinks. Their link state is monitored automatically when the connected devices expose interface telemetry.</p><p class="error" id="cable-error" role="alert"></p><div class="dialog-actions"><button class="secondary" type="button" data-close>Cancel</button><button type="submit">Save connection</button></div></form></dialog>
+</body>
+</html>

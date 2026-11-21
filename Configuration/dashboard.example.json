@@ -1,0 +1,6 @@
+{
+  "check_interval_seconds": 60,
+  "check_timeout_seconds": 5,
+  "services": [],
+  "devices": []
+}

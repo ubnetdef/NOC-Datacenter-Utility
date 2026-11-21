@@ -1,0 +1,88 @@
+# Replace certificate paths and the example reverse-proxy address before enabling.
+# Create /etc/apache2/noc-session-key as a root-only random key.
+# Management must remain VPN/private-network-only at the external proxy.
+<VirtualHost *:80>
+    ServerName status.ubnetdef.org
+    Redirect permanent / https://status.ubnetdef.org/
+</VirtualHost>
+
+<VirtualHost *:80>
+    ServerName management.ubnetdef.org
+    Redirect permanent / https://management.ubnetdef.org/
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName status.ubnetdef.org
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/noc/fullchain.pem
+    SSLCertificateKeyFile /etc/ssl/noc/privkey.pem
+    ProxyRequests Off
+    ProxyPass / http://127.0.0.1:8080/
+    ProxyPassReverse / http://127.0.0.1:8080/
+    <Location />
+        Require all granted
+    </Location>
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName management.ubnetdef.org
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/noc/fullchain.pem
+    SSLCertificateKeyFile /etc/ssl/noc/privkey.pem
+    ProxyRequests Off
+    ProxyPreserveHost On
+    RequestHeader unset Authorization
+    ProxyPass / http://127.0.0.1:8081/
+    ProxyPassReverse / http://127.0.0.1:8081/
+    <Location />
+        AuthType form
+        AuthName "/"
+        AuthFormProvider PAM
+        AuthPAMService noc-management
+        AuthFormLoginRequiredLocation /login
+        Session On
+        SessionMaxAge 28800
+        SessionCookieName __Host-noc-management path=/;HttpOnly;Secure;SameSite=Strict
+        SessionCryptoPassphraseFile /etc/apache2/noc-session-key
+        SessionCookieRemove On
+        <RequireAll>
+            Require ip 192.0.2.10
+            Require valid-user
+        </RequireAll>
+    </Location>
+    <Location /login>
+        AuthType None
+        <RequireAll>
+            Require ip 192.0.2.10
+        </RequireAll>
+    </Location>
+    <Location /dologin>
+        SetHandler form-login-handler
+        AuthType form
+        AuthName "/"
+        AuthFormProvider PAM
+        AuthPAMService noc-management
+        AuthFormLoginRequiredLocation /login?failed=1
+        AuthFormLoginSuccessLocation /
+        Session On
+        SessionMaxAge 28800
+        SessionCookieName __Host-noc-management path=/;HttpOnly;Secure;SameSite=Strict
+        SessionCryptoPassphraseFile /etc/apache2/noc-session-key
+        <RequireAll>
+            Require ip 192.0.2.10
+        </RequireAll>
+    </Location>
+    <Location /logout>
+        SetHandler form-logout-handler
+        AuthType None
+        AuthName "/"
+        AuthFormLogoutLocation /login?logged_out=1
+        Session On
+        SessionMaxAge 1
+        SessionCookieName __Host-noc-management path=/;HttpOnly;Secure;SameSite=Strict
+        SessionCryptoPassphraseFile /etc/apache2/noc-session-key
+        <RequireAll>
+            Require ip 192.0.2.10
+        </RequireAll>
+    </Location>
+</VirtualHost>

@@ -1,0 +1,57 @@
+services:
+  status:
+    build: .
+    image: noc-datacenter-utility-status:latest
+    restart: unless-stopped
+    command: ["--surface", "status", "--host", "0.0.0.0", "--port", "8080", "--config", "/config/dashboard.json"]
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - type: bind
+        source: ./Configuration/status.json
+        target: /config/dashboard.json
+        read_only: true
+        bind:
+          create_host_path: false
+    networks:
+      - status
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  management:
+    build: .
+    image: noc-datacenter-utility-management:latest
+    restart: unless-stopped
+    command: ["--surface", "management", "--host", "0.0.0.0", "--port", "8080", "--config", "/config/dashboard.json", "--state", "/data/racks.sqlite3"]
+    # Local-only credentials; the production Swarm stack uses Apache/PAM instead.
+    environment:
+      NOC_TEST_AUTH: "1"
+      NOC_TEST_AUTH_USERNAME: admin
+      NOC_TEST_AUTH_PASSWORD: admin
+    ports:
+      - "127.0.0.1:8081:8080"
+    volumes:
+      - type: bind
+        source: ./Configuration/management.json
+        target: /config/dashboard.json
+        read_only: true
+        bind:
+          create_host_path: false
+      - rack_data:/data
+    networks:
+      - management
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  status:
+  management:
+
+volumes:
+  rack_data:

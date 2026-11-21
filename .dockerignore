@@ -1,0 +1,8 @@
+.git
+.gitignore
+Configuration
+Scripts
+tests
+__pycache__
+*.pyc
+temp.txt
