@@ -169,10 +169,19 @@ def add_admin_users():
     for name in users:
         if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.-]{0,63}\$?", name):
             raise SetupError(f"Invalid Linux username: {name}")
+        if name == "root":
+            raise SetupError("Do not use the root account for management-site sign-in.")
         try:
             pwd.getpwnam(name)
         except KeyError as error:
-            raise SetupError(f"Linux user does not exist: {name}. Create it with adduser first.") from error
+            if not confirm(f"Create Linux account {name} now"):
+                raise SetupError(f"Linux user does not exist: {name}.") from error
+            run(["adduser", "--disabled-password", "--gecos", "", name])
+            run(["passwd", name])
+            try:
+                pwd.getpwnam(name)
+            except KeyError as missing_user:
+                raise SetupError(f"The Linux account was not created: {name}.") from missing_user
         run(["usermod", "-a", "-G", ADMIN_GROUP, name])
     print(f"Added {', '.join(users)} to OS group {ADMIN_GROUP}.")
 

@@ -7,24 +7,38 @@ restricted to the VPN/private network.
 
 ## Install
 
-On the Debian/Ubuntu Linux Docker host that can reach the BMC/light-out network,
-install Docker Engine 28+ and the Compose plugin, clone this repository, then
-run:
+On a clean Debian/Ubuntu application host that can reach the BMC/light-out
+network, install the small download prerequisites and run the installer:
 
 ```sh
-sudo bash deploy/setup.sh
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl
+curl -fsSLo /tmp/noc-setup.sh \
+  https://raw.githubusercontent.com/ubnetdef/NOC-Datacenter-Utility/main/deploy/setup.sh
+sudo bash /tmp/noc-setup.sh
+sudo rm -f /tmp/noc-setup.sh
 ```
+
+The installer installs Docker Engine 28+ and Compose from Docker's official
+Debian/Ubuntu repository, clones the project to
+`/opt/noc-datacenter-utility`, and launches the interactive setup wizard. It
+refuses repositories whose history still contains the legacy
+`Configuration/config.json`; revoke any old webhook and clean the remote history
+before installing.
 
 The wizard checks a route to an example private BMC IP, creates missing local
 configuration files, sets their container-readable permissions, and asks for:
 
-- Existing Linux users to grant management access. Create accounts first with
-  `sudo adduser <username>`. The web login is that OS username and password.
+- Management usernames to authorize. The wizard can create missing Linux
+  accounts and prompt you to set their passwords; the web login uses those OS
+  credentials.
 - The separate reverse-proxy IP and the application host's TLS certificate/key.
 - Read-only Redfish, SNMP v2c, or IPMI credential profiles. Passwords and
   communities are entered without echo and stored in a root-only file under
   `/etc/noc-datacenter-utility/`; a versioned Docker Swarm secret is mounted
   only in the management container.
+
+To run from an already-cloned checkout, use `sudo bash deploy/setup.sh`.
 
 The branded sign-in page is backed by PAM and the `noc-admin` group. Successful
 logins use an encrypted, secure session cookie that expires after eight hours;
@@ -89,7 +103,7 @@ JSON files. Add and maintain physical device inventory in the management UI.
 Run on the application host from a clean Git branch with an upstream:
 
 ```sh
-bash deploy/update.sh
+sudo bash deploy/update.sh
 ```
 
 The script fast-forwards the checkout, rebuilds images, redeploys using the
