@@ -97,6 +97,13 @@ if [[ -z "${source_repo}" ]]; then
     fi
 fi
 
+source_repo="$(cd -- "${source_repo}" && pwd)"
+if [[ ! -f "${source_repo}/deploy/setup_wizard.py" ]]; then
+    echo "The checkout is missing deploy/setup_wizard.py: ${source_repo}" >&2
+    echo "Use a complete NOC-Datacenter-Utility repository checkout." >&2
+    exit 1
+fi
+
 if git -C "${source_repo}" rev-list --all --objects | grep -q ' Configuration/config\.json$'; then
     echo "Refusing to install: Git history still contains Configuration/config.json." >&2
     echo "Remove that file from all remote history and revoke any old webhook before retrying." >&2
