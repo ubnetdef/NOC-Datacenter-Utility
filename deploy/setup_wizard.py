@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Interactive Debian/Ubuntu setup for the NOC dashboard host."""
 
+import argparse
 import getpass
 import ipaddress
 import json
